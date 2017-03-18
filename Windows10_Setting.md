@@ -21,9 +21,6 @@ Anacondaインストール後、以下のコマンドでインストール
 \>conda install --channel https://conda.anaconda.org/menpo opencv3  
 ※Python3ではOpenCVがうまくインストールできないかったのでとりあえずPython 2.7で実行している。
 
-#### Spyder
-※AnacondaをインストールするとSpyder(Python IDE)もインストールされた。IDLEよりも使いやすかったのでRaspberryPiやUbuntuにもインストールした。
-
 #### Atom
 このメモ（マークダウンファイル *.md)の編集のためにインストール。とても使いやすい。
 

@@ -129,9 +129,62 @@ $ sudo apt-get install joystick jstest-gtk
 (システムツール → jstest-gtk)
 
 ### ヘッドセットのインストール
-$ヘッドセット：Logicool 型番不明  
-###### USB機器として認識されているか確認する  
-$lsusb -t
+※使用したヘッドセット：Logicool製ですが、型番は不明です。
+※いろいろ試したけどUbuntu 14.04LTS + USBヘッドセット　+ Julius rev.4.3.1の組み合わせでは、1度は起動できるけど、2度目の起動前はUSBを抜き差ししないといけないという不具合ではまり、解決できませんでした。[こちらの方](http://engetu21.hatenablog.com/entry/2014/11/16/155927)も同じ現象が起きているので、そういうものだと思って諦めました。
 
-##### USBヘッドセットの選択  
-Ubuntu メニュー（画面右上）→システム→サウンドから入出力ともにUSBヘッドセットを選択する
+#### USB機器として認識されているか確認する  
+$lsusb  
+私の環境では問題なく認識されていました。
+
+#### USBヘッドセットの優先順位の確認
+$cat /proc/asound/modules  
+ 0 snd_hda_intel  
+ 1 snd_hda_intel  
+ 2 snd_usb_audio  
+
+#### USBヘッドセットの優先順位の変更
+$sudo nano /etc/modprobe.d/alsa-base.conf  
+
+\# Keep snd-usb-audio from beeing loaded as first soundcard     
+options snd-usb-audio index=-2  
+
+の行を以下に書き換える
+
+\# Keep snd-usb-audio from beeing loaded as first soundcard  
+options snd-usb-audio index=0
+
+#### 再起動してUSBヘッドセットの優先順位の確認
+$sudo reboot  
+$cat /proc/asound/modules  
+0 snd_usb_audio  
+1 snd_hda_intel  
+2 snd_hda_intel
+
+### ノートPC内蔵スピーカーと内臓マイクを使えるようにする
+#### 必要なソフトをインストールする
+$ sudo apt-get update  
+$ sudo apt-get upgrade  
+$ sudo apt-get install alsa-utils sox libsox-fmt-all  
+$ sudo apt-get install pavucontrol  
+
+#### マイク（プラグインと内臓）のCard No と Device Noを調べる
+$ arecord -l  
+
+#### alsamixerでマイク音量（プラグインと内臓）を設定する
+$ alsamixer
+F6(サウンドカード選択)→HDA Intel PCH
+Auto-Muto : Disable
+その他をすべて１００にしてESCで終了
+
+#### alsamixerでマイク音量（プラグインor内臓）を１００に設定する
+$ pavucontrol  
+入力タブの音量設定を１００にする
+
+#### 録音してみる
+$ arecord -D plughw:2,0 -r 16000 -f S16_LE test.wav  
+※2,0 はカード番号の2とデバイス番号の0  
+※16000はJulius用に16kHz  
+※終了はctl+c  
+
+#### 再生してみる
+$ aplay test.wav
