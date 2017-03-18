@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>WebIOPi | Light Control</title>
+    <script type="text/javascript" src="/webiopi.js"></script>
+    <script type="text/javascript">
+    webiopi().ready(function() {
+        var StopButton = webiopi().createButton("StopButton", "とまる", function(){webiopi().callMacro("stop");});
+        var ForwardButton = webiopi().createButton("ForwardButton", "ぜんしん", function(){webiopi().callMacro("forward");});
+        var BackwardButton = webiopi().createButton("BackwardButton", "こうたい", function(){webiopi().callMacro("backward");});
+        var TurnLeftButton = webiopi().createButton("TurnLeftButton", "ひだり", function(){webiopi().callMacro("turn_left");});
+        var TurnRightButton = webiopi().createButton("TurnRightButton", "みぎ", function(){webiopi().callMacro("turn_right");});
+        //var StreamerStartButton = webiopi().createButton("StreamerStartButton", "カメラ", function(){webiopi().callMacro("mjpg_streamer_start");});
+
+        // Append button to HTML element with ID="controls" using jQuery
+        $("#bStop").append(StopButton);
+        $("#bForward").append(ForwardButton);
+        $("#bBackward").append(BackwardButton);
+        $("#bTurnLeft").append(TurnLeftButton);
+        $("#bTurnRgiht").append(TurnRightButton);
+        //$("#bStreamerStartButton").append(StreamerStartButton);
+    });
+
+    </script>
+    <style type="text/css">
+        button{
+            display: block;
+            margin: 5px 5px 5px 5px;
+            width: 100px;
+            height: 40px;
+            font-size: 10pt;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div id="bForward" align="center"></div>
+<center><div style="display:inline-flex;">
+  <div id="bTurnLeft" class="button1"></div>
+  <div id="bStop" class="button1"></div>
+  <div id="bTurnRgiht" class="button1"></div>
+</div></center>
+
+<div id="bBackward" align="center"></div>
+
+<br><br><br>
+<Hr Width="80%">
+<div id="bStreamerStartButton" class="button2" align="center"></div>
+
+</body>
+</html>
