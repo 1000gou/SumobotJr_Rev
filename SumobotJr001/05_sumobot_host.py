@@ -10,13 +10,13 @@ import socket
 
 ############################################################################
 #通信関連の定数
-#PI_HOST_NAME = 'gapithree.local'    #ラズパイUDP受信ホスト名
-PI_HOST_NAME = '192.168.2.200'    #ラズパイUDP受信ホスト名
+PI_HOST_NAME = 'GApi.local'    #ラズパイUDP受信ホスト名
+#PI_HOST_NAME = '192.168.2.200'    #ラズパイUDP受信ホスト名
 PI_HOST_PORT = 4000                 #ラズパイUDP受信ポート番号
 PI_BUFF_SIZE = 4096                 #ラズパイUDP受信バッファーサイズ
 PI_SOKET_TIMEOUT = 0.001            #ラズパイUDPソケット待のタイムアウトまでの時間[s]
-#UBU_HOST_NAME = 'gaubutwo.local'    #画像UDP受信ホスト名
-UBU_HOST_NAME = '192.168.2.100'    #画像UDP受信ホスト名
+UBU_HOST_NAME = 'GAubu2.local'      #画像UDP受信ホスト名
+#UBU_HOST_NAME = '192.168.2.100'    #画像UDP受信ホスト名
 UBU_HOST_PORT = 4001                #画像UDP受信ポート番号
 
 
@@ -218,7 +218,7 @@ class Ball_detecter_Class:
         hsv = cv2.cvtColor(self.image,cv2.COLOR_BGR2HSV)
         return cv2.inRange(hsv,lower,upper)
 
-    #黄色の抽出（誤検出が多いのでプログラムでは使っていない）
+    #黄色の抽出
     def Extract_Yellow(self, image):
         # 黄色を検出
         lower = np.array([30, 20, 150])

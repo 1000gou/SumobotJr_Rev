@@ -9,11 +9,11 @@ import numpy
 
 ############################################################################
 #通信関連の定数
-#PI_HOST_NAME = 'gapithree.local'    #ラズパイUDP受信ホスト名
+PI_HOST_NAME = 'gapithree.local'    #ラズパイUDP受信ホスト名
 PI_HOST_NAME = '192.168.2.200'    #ラズパイUDP受信ホスト名
 PI_HOST_PORT = 4000                 #ラズパイUDP受信ポート番号
-#UBU_HOST_NAME = 'gaubutwo.local'    #画像UDP受信ホスト名
-UBU_HOST_NAME = '192.168.2.100'    #画像UDP受信ホスト名
+UBU_HOST_NAME = 'gaubutwo.local'    #画像UDP受信ホスト名
+#UBU_HOST_NAME = '192.168.2.100'    #画像UDP受信ホスト名
 UBU_HOST_PORT = 4001                #画像UDP受信ポート番号
 UBU_BUFF_SIZE = 1024*64             #画像UDP受信バッファーサイズ
 UBU_SOKET_TIMEOUT = 0.01            #画像UDP受信タイムアウトまでの時間[s]
